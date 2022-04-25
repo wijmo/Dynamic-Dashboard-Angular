@@ -1,0 +1,40 @@
+<div class="container">
+  <div [ngClass]="{menu: true, 'menu--open': isWideMenu}">
+    <div class="menu-toggle" (click)="toggleMenu()">
+      <svg width="30" height="20" viewBox="0 0 30 20" fill="#1c7cdc">
+        <rect x="10" y="5" width="11" height="1" />
+        <rect x="10" y="15" width="11" height="1" />
+        <polygon
+          points="29.48 10.27 24.23 5.03 23.52 5.73 27.79 10 10 10 10 11 27.79 11 23.52 15.27 24.23 15.97 29.48 10.73 29.7 10.5 29.48 10.27"
+        />
+      </svg>
+    </div>
+    <div *ngFor="let widget of widgets" class="menu-item" [title]="widget.title" (click)="addTile(widget.title)">
+      <svg width="64" height="64" viewBox="0 0 64 64" [innerHTML]="widget.icon"></svg>
+      <div class="menu-item-name">{{ widget.title }}</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <div class="content">
+    <div
+      class="dashboard"
+      (click)="handleTile($event)"
+      (dragstart)="dragstart($event)"
+      (dragover)="dragover($event)"
+      (drop)="drop($event)"
+      (dragend)="dragend($event)"
+    >
+      <ng-container #dynCompContainer></ng-container>
+      <div class="blank">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#819cce">
+          <path
+            d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2M4,4V16H8.83L12,19.17L15.17,16H20V4H4M11,6H13V9H16V11H13V14H11V11H8V9H11V6Z"
+          />
+        </svg>
+        <div>Click on an item on the menu bar to add the new tile to the dashboard.</div>
+      </div>
+    </div>
+  </div>
+</div>
